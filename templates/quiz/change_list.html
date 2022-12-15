@@ -1,0 +1,8 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+{% block content %}
+<script src="{% static 'quiz/js/validator.js' %}"></script>
+<!-- Render the rest of the ChangeList view by calling block.super -->
+{{ block.super }}
+
+{% endblock %}

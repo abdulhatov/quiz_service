@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz: {{ quiz.name }}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'quizzes/style.css' %}">
+</head>
+<body>
+    <div class="container">
+    <h1>Quiz: {{ quiz.name }}</h1>
+
+    <section class="question">
+    {% if question %}
+        <fieldset class="form-group">
+            <legend>{{ question.prompt }}</legend>
+
+                <br>
+                <H1>{{ question.content }}</H1>
+                {% if next_question %}
+                <form onsubmit="return validateForm(this)"
+                      action="{% url 'quiz:display_question' quiz_id=quiz.id question_id=next_question.id %}"
+                      method="POST">
+                {% csrf_token %}
+                    {% for choice in answers %}
+            <div class="radio">
+            <label>
+                <input type="checkbox" class="answers" id="answer" name="{{ choice.content }}" value="{{ choice.content }}">
+                {{ choice.content }}
+            </label>
+            </div>
+            {% endfor %}
+                 <div style="visibility:hidden; color:red" id="agree_chk_error">
+                  At least one mark!
+                  </div>
+                <div style="visibility:hidden; color:red" id="agree_chk_error2">
+                 You can't check all options!
+                </div>
+                <button type="submit"  class="btn btn-primary">Next</button>
+                </form>
+            {% else %}
+            <form  method="POST"
+                   onsubmit="return validateFormResult(this)"
+                   action="{% url 'quiz:result' %}">
+                {% csrf_token %}
+                    {% for choice in answers %}
+            <div class="radio">
+            <label>
+                <input type="checkbox" class="selected_values" name="{{ choice.content }}" value="{{ choice.content }}">
+                {{ choice.content }}
+            </label>
+            </div>
+            {% endfor %}
+            <div style="visibility:hidden; color:red" id="agree_chk_error">
+                  At least one mark!
+                  </div>
+                <div style="visibility:hidden; color:red" id="agree_chk_error2">
+                 You can't check all options!
+                </div>
+                <div style="margin-top:12px; font-size:16px">
+                    <button  onclick="correct_answer()" class="btn btn-primary">See result</button>
+                </div>
+            </form>
+                {% endif %}
+            {% endif %}
+</body>
+<script src="{% static 'quiz/js/validator.js' %}"></script>
+</html>

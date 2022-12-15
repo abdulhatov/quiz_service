@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QUIZ</title>
+</head>
+<body>
+<h1 style="color: red">{{ question.content }}</h1>
+ <form method="POST">
+ {% csrf_token %}
+{% for item in answers %}
+
+    {{ item.content }}<br>
+
+{% endfor %}
+<a href="{% url 'quiz:quiz_select' question.pk %}"> <button type="submit">SUBMIT</button></a>
+   </form>
+</body>
+</html>

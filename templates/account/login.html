@@ -1,0 +1,32 @@
+{% extends "account/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+{% block register %}
+{% endblock %}
+{% block sugnIn %}
+    <form method="POST">
+    {% csrf_token %}
+				<div class="group">
+					<label for="username" class="label">username</label>
+                    {{ form.username }}
+				</div>
+                <div class="group">
+					<label for="password" class="label">password</label>
+                    {{ form.password }}
+				</div>
+				<div class="group">
+					<input type="submit" class="button" value="Вход">
+				</div>
+				<div class="hr"></div>
+                <div class="foot-lnk">
+					<a href="{% url 'account:register' %}">Регистрация</a>
+				</div>
+    </form>
+{% endblock %}
+</body>
+</html>

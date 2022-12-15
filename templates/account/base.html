@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+</head>
+<body>
+<div class="login-wrap">
+	<div class="login-html">
+    {% block content %}
+    {% endblock %}
+    {% block login %}
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked>
+        <label for="tab-1" class="tab">Вход</label>
+    {% endblock %}
+    {% block register %}
+		<input id="tab-2" type="radio" name="tab" class="sign-up" checked>
+        <label for="tab-2" class="tab">Регистрация</label>
+    {% endblock %}
+		<div class="login-form">
+        {% block sugnIn %}
+           <div class="sign-in-htm">
+           </div>
+        {% endblock %}
+        {% block sugnUp %}
+			<div class="sign-up-htm">
+			</div>
+         {% endblock %}
+		</div>
+	</div>
+</div>
+</body>
+</html>

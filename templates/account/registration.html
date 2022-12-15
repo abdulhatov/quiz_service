@@ -1,0 +1,49 @@
+{% extends "account/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+{% block login %}
+{% endblock %}
+{% block sugnUp %}
+                <form method="POST">
+                {% csrf_token %}
+                <div class="group">
+					<label for="user" class="label">Имя</label>
+					{{ form.first_name }}
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Фамилия</label>
+                    {{ form.last_name }}
+                </div>
+                <div class="group">
+					<label for="pass" class="label">Username</label>
+                    {{ form.username }}
+                </div>
+                    <div class="group">
+					<label for="pass" class="label">Email</label>
+					{{ form.email }}
+                    </div>
+				<div class="group">
+					<label for="pass" class="label">Пароль</label>
+					{{ form.password }}
+				</div>
+                <div class="group">
+					<label for="pass" class="label">Повтор пароль</label>
+					{{ form.password2 }}
+				</div>
+
+				<div class="group">
+					<input type="submit" class="button" value="Регистрация">
+				</div>
+                </form>
+				<div class="hr"></div>
+				<div class="foot-lnk">
+					<a href="{% url 'account:login' %}">Уже регистрировали?</a>
+				</div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'quiz/css/stylesheet.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Test Your Skills</title>
+        <link rel="stylesheet" href="{% static 'quiz/css/stylesheet.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    </head>
+    
+    <body style="background-image: url('{% static "quiz/img/hero-img.jpg" %}')";>
+        <div id="wrapper">
+        <nav>
+        </nav>
+            <div class="Content" >
+                {% for quiz in quizs %}
+                    <button class="dashboard"><a href="{% url 'quiz:quiz_select' quiz.pk %}">{{ quiz }}</a></button>
+                <br>
+                <br>
+                {% endfor %}
+
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="{% static 'quiz/js/script.js' %}"></script>
+    </body>
+</html>
